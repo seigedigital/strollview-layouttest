@@ -19,9 +19,17 @@ Z Levels
   height: 400px;
   border:1px solid black;
   z-index: 1;
-  margin:auto;
+  margin:0;
+  padding:0;
   display: grid;
   grid-template: var(--textsize) 1fr var(--textsize)  / var(--textsize) 1fr var(--textsize);
+}
+
+.iosfullscreen {
+  position: absolute;
+  left:0;
+  width:100vw !important;
+  height:100vh !important;
 }
 
 #openseadragons {

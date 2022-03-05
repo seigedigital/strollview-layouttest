@@ -1,17 +1,49 @@
+function isIOS() {
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    return true
+  }
+  return false
+}
+
 function toggleFullScreen() {
-  console.log("toggleFullScreen")
-  let e = document.getElementById("container")
-  console.log(e.fullscreenElement)
-  if (!document.fullscreenElement) {
-      document.getElementById("textarea").style.display="grid"
-      document.getElementById("shield").style.display="none"
-      e.requestFullscreen()
-  } else {
-    if (document.exitFullscreen) {
-      document.getElementById("textarea").style.display="none"
-      document.getElementById("shield").style.display="flex"
-      document.exitFullscreen()
+    if(isIOS()) {
+      toggleFullScreenIOS()
+    } else {
+      toggleFullScreenReal()
     }
+}
+
+function toggleFullScreenReal() {
+  console.log("toggleFullScreenReal")
+  let e = document.getElementById("container")
+  if (!document.fullscreenElement) {
+    document.getElementById("textarea").style.display="grid"
+    document.getElementById("shield").style.display="none"
+    e.requestFullscreen()
+  } else if (document.exitFullscreen) {
+    document.getElementById("textarea").style.display="none"
+    document.getElementById("shield").style.display="flex"
+    document.exitFullscreen()
+  }
+}
+
+var iOSFullScreenFlag = false
+
+function toggleFullScreenIOS() {
+  console.log("toggleFullScreenIOS "+iOSFullScreenFlag)
+  let e = document.getElementById("container")
+  iOSFullScreenFlag=iOSFullScreenFlag==false?true:false
+  let offset = Math.floor(document.documentElement.scrollTop || document.body.scrollTop)+"px"
+  console.log("off >"+offset+"<")
+  if(iOSFullScreenFlag) {
+    document.getElementById("textarea").style.display="grid"
+    document.getElementById("shield").style.display="none"
+    e.style.top=offset
+    e.classList.add("iosfullscreen")
+  } else {
+    document.getElementById("textarea").style.display="none"
+    document.getElementById("shield").style.display="flex"
+    e.classList.remove("iosfullscreen")
   }
 }
 
