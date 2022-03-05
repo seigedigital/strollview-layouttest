@@ -1,0 +1,146 @@
+/*
+
+Z Levels
+
+1 - container
+
+100 - 199 OpenSeaDragons
+
+200 - 299 Overlay Elements (Text und Buttons)
+
+*/
+
+:root {
+  --textsize: 100px;
+}
+
+#container {
+  width: 80%;
+  height: 400px;
+  border:1px solid black;
+  z-index: 1;
+  margin:auto;
+  display: grid;
+  grid-template: var(--textsize) 1fr var(--textsize)  / var(--textsize) 1fr var(--textsize);
+}
+
+#openseadragons {
+  z-index: 100;
+  background-color: black;
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  background-image: url('default.jpeg');
+  background-size: 120%;
+  background-position: center;
+}
+
+#textarea {
+  display: grid;
+  z-index: 105;
+  background-color: #ffffff80;
+  color: black;
+  z-index: 100;
+  width:100%;
+  height:100%;
+}
+
+.textarea_left {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  display:grid;
+  grid-template: [contentrow]1fr [navrow]100px / [contentcolumn navcolumn]1fr;
+}
+
+.textarea_right {
+  grid-column: 3;
+  grid-row: 1 / span 3;
+  display:grid;
+  grid-template: [contentrow]1fr [navrow]100px / [contentcolumn navcolumn]1fr;
+}
+
+.textarea_top {
+  grid-column: 1 / span 3;
+  grid-row: 1 ;
+  display:grid;
+  grid-template: [contentrow navrow]1fr / [contentcolumn]1fr [navcolumn]100px;
+}
+
+.textarea_bottom {
+  grid-column: 1 / span 3;
+  grid-row: 3 ;
+  display:grid;
+  grid-template: [contentrow navrow]1fr / [contentcolumn]1fr [navcolumn]100px;
+}
+
+#textarea_content {
+  z-index: 110;
+  grid-row: contentrow;
+  grid-column: contentcolumn;
+  width:100%;
+  height:100%;
+  overflow:scroll;
+}
+
+#textarea_nav {
+  z-index: 120;
+  grid-row: navrow;
+  grid-column: navcolumn;
+  width:100%;
+  height:100%;
+  display:grid;
+  grid-template: [navtop]50px [navbottom]50px / [navleft]1fr  [navright]1fr;
+}
+
+#iconrev {
+  z-index: 130;
+  width:100%;
+  height:100%;
+  background-color: yellow;
+  grid-row: navtop;
+  grid-column: navleft;
+}
+
+#iconfwd {
+  z-index: 130;
+  width:100%;
+  height:100%;
+  background-color: green;
+  grid-row: navtop;
+  grid-column: navright;
+}
+
+#iconmetainfo {
+  z-index: 130;
+  width:100%;
+  height:100%;
+  background-color: orange;
+  grid-row: navbottom;
+  grid-column: navright;
+}
+
+#iconfullscreen {
+  z-index: 130;
+  width:100%;
+  height:100%;
+  background-color: blue;
+  grid-row: navbottom;
+  grid-column: navleft;
+}
+
+/* mobile mode */
+
+#shield {
+  display:none;
+  z-index: 200;
+  background-color: #ffffff80;
+  grid-column: 1 / span 3;
+  grid-row: 1 / span 3;
+  align-items: center;
+  justify-content: center;
+}
+
+#startbutton {
+  z-index:210;
+  background-color: black;
+  padding: 10px;
+}
