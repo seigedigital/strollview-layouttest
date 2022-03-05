@@ -11,7 +11,7 @@ Z Levels
 */
 
 :root {
-  --textsize: 100px;
+  --textsize: 30%;
 }
 
 #container {
@@ -88,7 +88,7 @@ Z Levels
   width:100%;
   height:100%;
   display:grid;
-  grid-template: [navtop]50px [navbottom]50px / [navleft]1fr  [navright]1fr;
+  grid-template: [navtop]1fr [navbottom]1fr / [navleft]1fr  [navright]1fr;
 }
 
 #iconrev {
@@ -141,6 +141,8 @@ Z Levels
 
 #startbutton {
   z-index:210;
-  background-color: black;
-  padding: 10px;
+  background-color: #444;
+  padding: 20px;
+  font-size: 40px;
+  border-radius: 10px;
 }

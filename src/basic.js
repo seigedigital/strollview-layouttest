@@ -25,7 +25,15 @@ function configurePlayer() {
     document.getElementById("textarea").style.display="grid"
     document.getElementById("shield").style.display="none"
   }
+  if(window.screen.width>window.screen.height) {
+    document.getElementById("textarea").className="textarea_left"
+  } else {
+    document.getElementById("textarea").className="textarea_bottom"
+  }
 }
 
-document.addEventListener("DOMContentLoaded", configurePlayer);
+document.addEventListener("DOMContentLoaded", () => {
+  configurePlayer()
+});
+
 window.addEventListener('resize', configurePlayer);
