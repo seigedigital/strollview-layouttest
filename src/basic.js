@@ -29,6 +29,18 @@ function toggleFullScreenReal() {
 
 var iOSFullScreenFlag = false
 
+function disableScrolling() {
+  TopScroll = window.pageYOffset || document.documentElement.scrollTop
+  LeftScroll = window.pageXOffset || document.documentElement.scrollLeft
+  window.onscroll = function() {
+    window.scrollTo(LeftScroll, TopScroll)
+  }
+}
+
+function enableScrolling() {
+  window.onscroll = function() {}
+}
+
 function toggleFullScreenIOS() {
   console.log("toggleFullScreenIOS "+iOSFullScreenFlag)
   let e = document.getElementById("container")
@@ -36,11 +48,13 @@ function toggleFullScreenIOS() {
   let offset = Math.floor(document.documentElement.scrollTop || document.body.scrollTop)+"px"
   console.log("off >"+offset+"<")
   if(iOSFullScreenFlag) {
+    disableScrolling()
     document.getElementById("textarea").style.display="grid"
     document.getElementById("shield").style.display="none"
     e.style.top=offset
     e.classList.add("iosfullscreen")
   } else {
+    enableScrolling()
     document.getElementById("textarea").style.display="none"
     document.getElementById("shield").style.display="flex"
     e.classList.remove("iosfullscreen")
