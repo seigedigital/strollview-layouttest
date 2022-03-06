@@ -11,16 +11,17 @@ Z Levels
 */
 
 :root {
-  --textsize: 30%;  /* configurable? textarea */
+  --textsize: 30%;  /* configurable? textarea in % */
 }
 
 #container {
-  width: 80%; /* configurable: embedded width  */
+  width: 100%; /* configurable: embedded width  */
   height: 400px; /* configurable: enbedded height */
   z-index: 1;
   margin:0;
   padding:0;
   display: grid;
+  background-color: black;
   grid-template: var(--textsize) 1fr var(--textsize)  / var(--textsize) 1fr var(--textsize);
 }
 
@@ -30,8 +31,8 @@ Z Levels
   left:0;
   width:100vw !important;
   height:90vh !important;
-  border-top:5vh solid white;
-  border-bottom:10vh solid white;
+  border-top:5vh solid black;
+  border-bottom:10vh solid black;
   border-left: 0;
   border-right: 0;
 }
