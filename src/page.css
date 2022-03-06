@@ -30,9 +30,9 @@ body::-webkit-scrollbar {
 }
 
 h1 {
-  font-size: 4vh;
+  font-size: calc( ( 3.5vh + 3.5vw ) / 2);
 }
 
 p {
-  font-size: 3vh;
+  font-size: calc( ( 2.5vh + 2.5vw ) / 2);
 }

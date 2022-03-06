@@ -101,7 +101,6 @@ function configurePlayer() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("iconmetainfo").innerHTML=navigator.platform
   configurePlayer()
 });
 
