@@ -30,8 +30,8 @@ Z Levels
   left:0;
   width:100vw !important;
   height:90vh !important;
-  border-top:5vh solid white;
-  border-bottom:10vh solid white;
+  border-top:5vh solid black;
+  border-bottom:10vh solid black;
   border-left: 0;
   border-right: 0;
 }
@@ -86,6 +86,7 @@ Z Levels
 }
 
 #textarea_content {
+  display:block;
   z-index: 110;
   grid-row: contentrow;
   grid-column: contentcolumn;
