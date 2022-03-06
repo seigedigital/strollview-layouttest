@@ -1,8 +1,13 @@
 function isIOS() {
-  if (/iPhone/i.test(navigator.userAgent)) {
-    return true
-  }
-  return false
+  return [
+    'iPad Simulator',
+    'iPhone Simulator',
+    'iPod Simulator',
+    'iPad',
+    'iPhone',
+    'iPod'
+  ].includes(navigator.platform)
+  || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
 }
 
 function toggleFullScreen() {
