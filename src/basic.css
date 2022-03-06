@@ -91,6 +91,7 @@ Z Levels
   width:90%;
   height:90%;
   overflow:scroll;
+  -webkit-overflow-scrolling: touch;
   padding:5%;
 }
 
