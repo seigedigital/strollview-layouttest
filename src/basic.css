@@ -11,12 +11,12 @@ Z Levels
 */
 
 :root {
-  --textsize: 30%;  /* configurable? */
+  --textsize: 30%;  /* configurable? textarea */
 }
 
 #container {
-  width: 80%; /* configurable */
-  height: 400px; /* configurable */
+  width: 80%; /* configurable: embedded width  */
+  height: 400px; /* configurable: enbedded height */
   border:1px solid black;
   z-index: 1;
   margin:0;
@@ -56,28 +56,28 @@ Z Levels
   grid-column: 1;
   grid-row: 1 / span 3;
   display:grid;
-  grid-template: [contentrow]1fr [navrow]100px / [contentcolumn navcolumn]1fr;
+  grid-template: [contentrow]1fr [navrow]var(--textsize) / [contentcolumn navcolumn]1fr;
 }
 
 .textarea_right {
   grid-column: 3;
   grid-row: 1 / span 3;
   display:grid;
-  grid-template: [contentrow]1fr [navrow]100px / [contentcolumn navcolumn]1fr;
+  grid-template: [contentrow]1fr [navrow]var(--textsize) / [contentcolumn navcolumn]1fr;
 }
 
 .textarea_top {
   grid-column: 1 / span 3;
   grid-row: 1 ;
   display:grid;
-  grid-template: [contentrow navrow]1fr / [contentcolumn]1fr [navcolumn]100px;
+  grid-template: [contentrow navrow]1fr / [contentcolumn]1fr [navcolumn]var(--textsize);
 }
 
 .textarea_bottom {
   grid-column: 1 / span 3;
   grid-row: 3 ;
   display:grid;
-  grid-template: [contentrow navrow]1fr / [contentcolumn]1fr [navcolumn]100px;
+  grid-template: [contentrow navrow]1fr / [contentcolumn]1fr [navcolumn]var(--textsize);
 }
 
 #textarea_content {
