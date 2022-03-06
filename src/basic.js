@@ -30,22 +30,24 @@ function toggleFullScreenReal() {
 var iOSFullScreenFlag = false
 
 function disableScrolling() {
-  TopScroll = window.pageYOffset || document.documentElement.scrollTop
-  LeftScroll = window.pageXOffset || document.documentElement.scrollLeft
-  window.onscroll = function() {
-    window.scrollTo(LeftScroll, TopScroll)
-  }
+  document.body.style.overflow="none"
+  // TopScroll = window.pageYOffset || document.documentElement.scrollTop
+  // LeftScroll = window.pageXOffset || document.documentElement.scrollLeft
+  // window.onscroll = function() {
+  //   window.scrollTo(LeftScroll, TopScroll)
+  // }
 }
 
 function enableScrolling() {
-  window.onscroll = function() {}
+  document.body.style.overflow=""
+  // window.onscroll = function() {}
 }
 
 function toggleFullScreenIOS() {
   console.log("toggleFullScreenIOS "+iOSFullScreenFlag)
   let e = document.getElementById("container")
   iOSFullScreenFlag=iOSFullScreenFlag==false?true:false
-  let offset = Math.floor(document.documentElement.scrollTop || document.body.scrollTop)+"px"
+  let offset = 0 //  Math.floor(document.documentElement.scrollTop || document.body.scrollTop)+"px"
   console.log("off >"+offset+"<")
   if(iOSFullScreenFlag) {
     disableScrolling()
@@ -64,7 +66,7 @@ function toggleFullScreenIOS() {
 function configurePlayer() {
   console.log("configurePlayer")
   console.log(window.screen.width)
-  if(window.screen.width<800 && !document.fullscreenElement) {
+  if( window.screen.width<800 && !(document.fullscreenElement||iOSFullScreenFlag) ) {
     document.getElementById("textarea").style.display="none"
     document.getElementById("shield").style.display="flex"
   } else {

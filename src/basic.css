@@ -11,12 +11,12 @@ Z Levels
 */
 
 :root {
-  --textsize: 30%;
+  --textsize: 30%;  /* configurable? */
 }
 
 #container {
-  width: 80%;
-  height: 400px;
+  width: 80%; /* configurable */
+  height: 400px; /* configurable */
   border:1px solid black;
   z-index: 1;
   margin:0;
@@ -26,10 +26,10 @@ Z Levels
 }
 
 .iosfullscreen {
-  position: absolute;
+  position: fixed;
   left:0;
-  width:100vw !important;
-  height:100vh !important;
+  width:101vw !important;
+  height:101vh !important;
 }
 
 #openseadragons {
@@ -84,9 +84,10 @@ Z Levels
   z-index: 110;
   grid-row: contentrow;
   grid-column: contentcolumn;
-  width:100%;
-  height:100%;
+  width:90%;
+  height:90%;
   overflow:scroll;
+  padding:5%;
 }
 
 #textarea_nav {

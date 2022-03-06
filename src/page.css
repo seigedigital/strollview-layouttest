@@ -1,3 +1,7 @@
+* {
+  overscroll-behavior: none;
+}
+
 html {
   padding:0;
   margin:0;
@@ -6,11 +10,23 @@ html {
   background-color: black;
   color:white;
   font-family: sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 body {
   width:80vw;
   padding: 0px 10vw;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 h1 {
