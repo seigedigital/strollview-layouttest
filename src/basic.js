@@ -1,5 +1,5 @@
 function isIOS() {
-  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  if (/iPhone/i.test(navigator.userAgent)) {
     return true
   }
   return false
@@ -19,11 +19,35 @@ function toggleFullScreenReal() {
   if (!document.fullscreenElement) {
     document.getElementById("textarea").style.display="grid"
     document.getElementById("shield").style.display="none"
-    e.requestFullscreen()
+    enterFullScreenVariants(e)
   } else if (document.exitFullscreen) {
     document.getElementById("textarea").style.display="none"
     document.getElementById("shield").style.display="flex"
-    document.exitFullscreen()
+    exitFullscreenVariants()
+  }
+}
+
+function enterFullScreenVariants(e) {
+    if (e.requestFullScreen) {
+        e.requestFullScreen();
+    } else if (e.webkitRequestFullScreen) {
+        e.webkitRequestFullScreen();
+    } else if (e.mozRequestFullScreen) {
+        e.mozRequestFullScreen();
+    } else if (e.msRequestFullscreen) {
+        e.msRequestFullscreen();
+    } else if (e.webkitEnterFullscreen) {
+       e.webkitEnterFullscreen();
+    }
+}
+
+function exitFullscreenVariants() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
   }
 }
 
@@ -31,16 +55,10 @@ var iOSFullScreenFlag = false
 
 function disableScrolling() {
   document.body.style.overflow="none"
-  // TopScroll = window.pageYOffset || document.documentElement.scrollTop
-  // LeftScroll = window.pageXOffset || document.documentElement.scrollLeft
-  // window.onscroll = function() {
-  //   window.scrollTo(LeftScroll, TopScroll)
-  // }
 }
 
 function enableScrolling() {
   document.body.style.overflow=""
-  // window.onscroll = function() {}
 }
 
 function toggleFullScreenIOS() {
