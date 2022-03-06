@@ -1,5 +1,5 @@
 function isIOS() {
-  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+  if (/iPhone/i.test(navigator.userAgent)) {
     return true
   }
   return false
