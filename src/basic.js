@@ -65,13 +65,10 @@ function toggleFullScreenIOS() {
   console.log("toggleFullScreenIOS "+iOSFullScreenFlag)
   let e = document.getElementById("container")
   iOSFullScreenFlag=iOSFullScreenFlag==false?true:false
-  let offset = 0 //  Math.floor(document.documentElement.scrollTop || document.body.scrollTop)+"px"
-  console.log("off >"+offset+"<")
   if(iOSFullScreenFlag) {
     disableScrolling()
     document.getElementById("textarea").style.display="grid"
     document.getElementById("shield").style.display="none"
-    e.style.top=offset
     e.classList.add("iosfullscreen")
   } else {
     enableScrolling()
@@ -99,6 +96,7 @@ function configurePlayer() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("iconmetainfo").innerHTML=navigator.platform
   configurePlayer()
 });
 

@@ -17,7 +17,6 @@ Z Levels
 #container {
   width: 80%; /* configurable: embedded width  */
   height: 400px; /* configurable: enbedded height */
-  border:1px solid black;
   z-index: 1;
   margin:0;
   padding:0;
@@ -27,9 +26,14 @@ Z Levels
 
 .iosfullscreen {
   position: fixed;
+  top:0;
   left:0;
-  width:101vw !important;
-  height:101vh !important;
+  width:100vw !important;
+  height:90vh !important;
+  border-top:5vh solid black;
+  border-bottom:10vh solid black;
+  border-left: 0;
+  border-right: 0;
 }
 
 #openseadragons {
