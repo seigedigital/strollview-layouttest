@@ -22,12 +22,10 @@ function toggleFullScreenReal() {
   console.log("toggleFullScreenReal")
   let e = document.getElementById("container")
   if (!document.fullscreenElement) {
-    document.getElementById("textarea").style.display="grid"
-    document.getElementById("shield").style.display="none"
+    configurePlayer()
     enterFullScreenVariants(e)
   } else if (document.exitFullscreen) {
-    document.getElementById("textarea").style.display="none"
-    document.getElementById("shield").style.display="flex"
+    configurePlayer()
     exitFullscreenVariants()
   }
 }
@@ -72,36 +70,45 @@ function toggleFullScreenIOS() {
   iOSFullScreenFlag=iOSFullScreenFlag==false?true:false
   if(iOSFullScreenFlag) {
     disableScrolling()
-    document.getElementById("textarea").style.display="grid"
-    document.getElementById("shield").style.display="none"
+    configurePlayer()
     e.classList.add("iosfullscreen")
   } else {
     enableScrolling()
-    document.getElementById("textarea").style.display="none"
-    document.getElementById("shield").style.display="flex"
+    configurePlayer()
     e.classList.remove("iosfullscreen")
   }
 }
 
 function configurePlayer() {
   console.log("configurePlayer")
-  console.log(window.screen.width)
+  document.getElementById("container").className="contained"
+  document.getElementById("textarea").className="contained_left"
+  console.log("Screen width: "+window.screen.width)
   if( window.screen.width<800 && !(document.fullscreenElement||iOSFullScreenFlag) ) {
-    document.getElementById("textarea").style.display="none"
-    document.getElementById("shield").style.display="flex"
+    // mobile mode
+    document.getElementById("textarea_content").style.display="none"
+    document.getElementById("textbelow").style.display="block"
+    document.getElementById("heading1").style.display="block"
+    document.getElementById("heading2").style.display="block"
+    // document.getElementById("shield").style.display="flex"
+    if(window.screen.width>window.screen.height) {
+      document.getElementById("textarea").className="contained_left"
+    } else {
+      document.getElementById("textarea").className="contained_superbottom"
+    }
   } else {
-    document.getElementById("textarea").style.display="grid"
-    document.getElementById("shield").style.display="none"
-  }
-  if(window.screen.width>window.screen.height) {
-    document.getElementById("textarea").className="textarea_left"
-  } else {
-    document.getElementById("textarea").className="textarea_bottom"
+    document.getElementById("textarea_content").style.display="grid"
+    document.getElementById("textbelow").style.display="none"
+    document.getElementById("heading1").style.display="none"
+    document.getElementById("heading2").style.display="none"
+    // document.getElementById("shield").style.display="none"
+    if(window.screen.width>window.screen.height) {
+      document.getElementById("textarea").className="contained_left"
+    } else {
+      document.getElementById("textarea").className="contained_bottom"
+    }
   }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  configurePlayer()
-});
-
-window.addEventListener('resize', configurePlayer);
+document.addEventListener("DOMContentLoaded", configurePlayer)
+window.addEventListener('resize', configurePlayer)
