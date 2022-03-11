@@ -17,7 +17,7 @@
   grid-column: 1 / span 3;
   grid-row: 1 / span 3;
   background-image: url('default.jpeg');
-  background-size: 120%;
+  background-size: cover;
   background-position: center;
 }
 
