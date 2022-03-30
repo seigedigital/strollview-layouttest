@@ -50,10 +50,21 @@ function toggleFullScreen() {
 function toggleFullScreenReal() {
   console.log("toggleFullScreenReal")
   let e = document.getElementById("container")
-  if (!document.fullscreenElement) {
+  if (
+    !document.fullscreenElement
+    && !document.webkitFullscreenElement
+  ){
+    // save height for later (Safari!)
+    containerHeight = e.style.height
+    containerWidth = e.style.width
+    e.style.height = "100vh"
+    e.style.width = "100vw"
     configurePlayer()
     enterFullScreenVariants(e)
-  } else if (document.exitFullscreen) {
+  } else if (document.exitFullscreen || document.webkitExitFullscreen) {
+    // restore height for later (Safari!)
+    e.style.height = containerHeight
+    e.style.width = containerWidth
     configurePlayer()
     exitFullscreenVariants()
   }
@@ -84,6 +95,8 @@ function exitFullscreenVariants() {
 }
 
 var iOSFullScreenFlag = false
+var containerHeight = false
+var containerWidth = false
 
 function disableScrolling() {
   document.body.style.overflow="none"
@@ -94,7 +107,7 @@ function enableScrolling() {
 }
 
 function toggleFullScreenIOS() {
-  console.log("toggleFullScreenIOS "+iOSFullScreenFlag)
+  // console.log("toggleFullScreenIOS "+iOSFullScreenFlag)
   iOSFullScreenFlag=iOSFullScreenFlag==false?true:false
   if(iOSFullScreenFlag) {
     disableScrolling()
@@ -107,8 +120,8 @@ function toggleFullScreenIOS() {
 
 function configurePlayer() {
   console.log("configurePlayer")
-  console.log("Screen width: "+window.screen.width)
-  console.log("Window width: "+window.innerWidth)
+  // console.log("Screen width: "+window.screen.width)
+  // console.log("Window width: "+window.innerWidth)
 
   document.getElementById("container").className="contained"
   if(iOSFullScreenFlag) {
@@ -138,10 +151,21 @@ function configurePlayer() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMLoaded event.")
+  // console.log("DOMLoaded event.")
   configurePlayer()
+
+  let c = document.getElementById("container")
+  c.addEventListener('webkitfullscreenchange', () => {
+    console.log("> > > > webkitfullscreenchange")
+    if(containerHeight!==false && !document.webkitFullscreenElement) {
+      console.log("set to "+containerHeight)
+      document.getElementById("container").style.height=containerHeight
+      document.getElementById("container").style.width=containerWidth
+    }
+  })
 })
+
 window.addEventListener('resize', () => {
-  console.log("Resize event.")
+  // console.log("Resize event.")
   configurePlayer()
 })
